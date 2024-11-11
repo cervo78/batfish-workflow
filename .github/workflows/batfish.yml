@@ -6,8 +6,8 @@ on:
 jobs:
    batfish-job:
     runs-on: ubuntu-latest
-    #container: 
-      #image: batfish/allinone
+    container: 
+      image: batfish/allinone
 
     steps:
     - name: Checkout repository
