@@ -1,12 +1,13 @@
 name: Batfish Analysis
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
 
 jobs:
   batfish-job:
     runs-on: ubuntu-latest
     container: 
-      image: batfish/allinone
+      image: batfish/batfish
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -16,5 +17,5 @@ jobs:
           mkdir -p /tmp/batfish
           cp -r configs /tmp/batfish
           cd /tmp/batfish
-          batfish -runmode snapshot -snapshotname mySnapshot -upload
-          batfish -runmode analysis -snapshotname mySnapshot -question reachability
+          /opt/batfish/bin/batfish -runmode snapshot -snapshotname mySnapshot -upload
+          /opt/batfish/bin/batfish -runmode analysis -snapshotname mySnapshot -question reachability
