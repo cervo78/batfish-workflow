@@ -7,15 +7,21 @@ jobs:
   batfish-job:
     runs-on: ubuntu-latest
     container: 
-      image: batfish/batfish
+      image: batfish/allinone
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run Batfish
+      - name: Prepare environment
         run: |
           mkdir -p /tmp/batfish
           cp -r configs /tmp/batfish
           cd /tmp/batfish
-          /opt/batfish/bin/batfish -runmode snapshot -snapshotname mySnapshot -upload
-          /opt/batfish/bin/batfish -runmode analysis -snapshotname mySnapshot -question reachability
+
+      - name: Run Batfish Snapshot
+        run: |
+          /usr/local/batfish/bin/batfish -runmode snapshot -snapshotname mySnapshot -upload
+
+      - name: Run Batfish Analysis
+        run: |
+          /usr/local/batfish/bin/batfish -runmode analysis -snapshotname mySnapshot -question reachability
