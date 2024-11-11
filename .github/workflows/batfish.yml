@@ -47,6 +47,11 @@ jobs:
       with:
         name: dependencies
 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
     - name: Build and run Batfish container
       run: |
         docker run -d --name batfish -p 9997:9997 -p 9996:9996 batfish/allinone
