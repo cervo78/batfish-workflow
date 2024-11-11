@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  batfish-job:
+   batfish-job:
     runs-on: ubuntu-latest
-    container: 
-      image: batfish/allinone
+    #container: 
+      #image: batfish/allinone
 
     steps:
     - name: Checkout repository
@@ -24,7 +24,7 @@ jobs:
         pip install pybatfish
         pip install pandas     
 
-    - name: Run script
-      env:
-        BF_SESSION_HOST: localhost
-      run: python run_batfish_client.py
+    #- name: Run script
+     # env:
+     #   BF_SESSION_HOST: localhost
+     # run: python run_batfish_client.py
